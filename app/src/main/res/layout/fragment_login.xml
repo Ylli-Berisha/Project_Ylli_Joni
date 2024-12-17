@@ -3,24 +3,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="32dp"
+    android:gravity="center"
+    android:background="@android:color/white">
 
+    <!-- Title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome !"
+        android:textSize="24sp"
+        android:textColor="#4CAF50"
+        android:layout_marginBottom="24dp"
+        android:textStyle="bold"/>
+
+    <!-- Username EditText -->
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username" />
+        android:hint="Username"
+        android:layout_marginBottom="16dp"
+        android:padding="16dp"
+        android:background="@drawable/edit_text_bg"
+        android:textColor="#333333"
+        android:textColorHint="#888888"/>
 
+    <!-- Password EditText -->
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:layout_marginBottom="24dp"
+        android:padding="16dp"
+        android:background="@drawable/edit_text_bg"
+        android:textColor="#333333"
+        android:textColorHint="#888888"/>
 
+    <!-- Login Button -->
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimary"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:padding="16dp"
+        android:layout_gravity="center" />
+
+    <!-- Forgot Password Link -->
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#4CAF50"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
 </LinearLayout>

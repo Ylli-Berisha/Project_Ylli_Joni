@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!-- Ngjyrat kryesore të aplikacionit -->
+    <color name="colorPrimary">#4CAF50</color> <!-- Ngjyra kryesore, e gjelbër -->
+    <color name="colorPrimaryDark">#388E3C</color> <!-- Ngjyra e errët për veçoritë si barra e statusit -->
+    <color name="colorAccent">#FF4081</color> <!-- Ngjyra e theksuar, mund të përdoret për butonat dhe ndihmës -->
+
+    <!-- Ngjyrat e tjera të mundshme -->
+    <color name="colorBackground">#FFFFFF</color> <!-- Ngjyra e bardhë për background -->
+    <color name="colorTextPrimary">#333333</color> <!-- Ngjyra e tekstit të përdoruesit -->
+    <color name="colorTextSecondary">#888888</color> <!-- Ngjyra e tekstit sekondar, për shembull hint-i në EditText -->
+    <color name="colorButton">#6200EE</color> <!-- Ngjyra për butonat -->
+    <color name="colorButtonText">#FFFFFF</color> <!-- Teksti i butonave, i bardhë për kontrast të mirë -->
+
 </resources>
