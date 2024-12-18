@@ -31,7 +31,7 @@ class GameDetailsFragment : Fragment() {
         } else {
             gameName.text = "No game name"
             gameUsers.text = "No users"
-            gameImage.setImageResource(R.drawable.game_image_1)
+            gameImage.setImageResource(R.drawable.game_image_1) 
         }
 
         return view

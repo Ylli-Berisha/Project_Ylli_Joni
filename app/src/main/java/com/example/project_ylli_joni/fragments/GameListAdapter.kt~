@@ -1,3 +1,0 @@
-package com.example.project_ylli_joni.fragments
-
-data class Game(val name: String, val users: Int, val imageResId: Int)

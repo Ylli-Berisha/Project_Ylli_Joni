@@ -25,9 +25,9 @@ class GameListFragment : Fragment() {
             parentFragmentManager.commit {
                 replace(R.id.fragment_container, GameDetailsFragment().apply {
                     arguments = Bundle().apply {
-                        putString("game_name", game.name)
-                        putInt("game_users", game.users)
-                        putInt("game_image", game.imageResId)
+                        putString("name", game.name)
+                        putInt("users", game.users)
+                        putInt("imageResId", game.imageResId)
                     }
                 })
                 addToBackStack(null)
@@ -40,9 +40,12 @@ class GameListFragment : Fragment() {
         populateGameList()
         adapter.notifyDataSetChanged()
 
-        view.findViewById<RecyclerView>(R.id.recycler_view)?.adapter?.notifyDataSetChanged()
-
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        view?.findViewById<RecyclerView>(R.id.recycler_view)?.adapter?.notifyDataSetChanged()
     }
 
     private fun populateGameList() {

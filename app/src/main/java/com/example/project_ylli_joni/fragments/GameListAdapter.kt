@@ -2,63 +2,57 @@ package com.example.project_ylli_joni.fragments
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.RecyclerView
 import com.example.project_ylli_joni.R
 
 data class Game(val name: String, val users: Int, val imageResId: Int)
+
+class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val gameImage: ImageView = itemView.findViewById(R.id.game_image)
+    val gameName: TextView = itemView.findViewById(R.id.game_name)
+    val gameUsers: TextView = itemView.findViewById(R.id.game_users)
+    val deleteButton: Button = itemView.findViewById(R.id.delete_button)
+}
+
 class GameListAdapter(
     private val context: Context,
+    private val games: MutableList<Game>,
     private val onItemClick: (Game) -> Unit
-) {
+) : RecyclerView.Adapter<GameViewHolder>() {
 
-    private val games = mutableListOf(
-        Game("Hell divers 2", 1000000, R.drawable.game_image_1),
-        Game("Dragons dogma 2", 2000000, R.drawable.game_image_2),
-        Game("Palworld", 3000000, R.drawable.game_image_3),
-        Game("WWE 2k24", 4000000, R.drawable.game_image_4),
-        Game("Persona 3 reload", 5000000, R.drawable.game_image_5),
-        Game("Suicide squad", 6000000, R.drawable.game_image_6),
-        Game("tekken", 7000000, R.drawable.game_image_7),
-        Game("Final fantasy", 800000000, R.drawable.game_image_8),
-        Game("Skull and bones", 90000000, R.drawable.game_image_9),
-        Game("MLB the show", 1000000, R.drawable.game_image_10)
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_game, parent, false)
+        return GameViewHolder(view)
+    }
 
-    fun populateGameList(container: LinearLayout) {
-        container.removeAllViews()
-        val inflater = LayoutInflater.from(context)
+    override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
+        val game = games[position]
+        holder.gameImage.setImageResource(game.imageResId)
+        holder.gameName.text = game.name
+        holder.gameUsers.text = "${game.users} users"
 
-        games.forEach { game ->
-            val gameView = inflater.inflate(R.layout.item_game, container, false)
-            val gameImage = gameView.findViewById<ImageView>(R.id.game_image)
-            val gameName = gameView.findViewById<TextView>(R.id.game_name)
-            val gameUsers = gameView.findViewById<TextView>(R.id.game_users)
-            val deleteButton = gameView.findViewById<Button>(R.id.delete_button)
+        holder.deleteButton.setOnClickListener {
+            AlertDialog.Builder(context)
+                .setMessage("A jeni i sigurte qe deshironi ta fshini item ${game.name}?")
+                .setPositiveButton("Po") { _, _ ->
+                    games.removeAt(position)
+                    notifyItemRemoved(position)
+                    notifyItemRangeChanged(position, games.size)
+                }
+                .setNegativeButton("Jo", null)
+                .show()
+        }
 
-            gameImage.setImageResource(game.imageResId)
-            gameName.text = game.name
-            gameUsers.text = "${game.users} users"
-
-            deleteButton.setOnClickListener {
-                AlertDialog.Builder(context)
-                    .setMessage("A jeni i sigurte qe deshironi ta fshini item ${game.name}?")
-                    .setPositiveButton("Po") { _, _ ->
-                        games.remove(game)
-                        populateGameList(container)
-                    }
-                    .setNegativeButton("Jo", null)
-                    .show()
-            }
-
-            gameView.setOnClickListener {
-                onItemClick(game)
-            }
-
-            container.addView(gameView)
+        holder.itemView.setOnClickListener {
+            onItemClick(game)
         }
     }
+
+    override fun getItemCount(): Int = games.size
 }
